@@ -42,7 +42,20 @@ class Circle{
 }
 
 class Square {
-    constructor() {
+    constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.width = size;
+        this.height = size;
+        this.color = color
+    }
+
+    draw(ctx) {
+        ctx.beginPath()
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+        ctx.fill();
     }
 }
 
@@ -84,7 +97,8 @@ function createRandomShape() {
     const figures = [
         ['Triangle', [x, y, size, color]],
         ['Rectangle', [x, y, height, width, color]],
-        ['Circle', [x, y, radius, color]]
+        ['Circle', [x, y, radius, color]],
+        ['Square', [x, y, size, color]]
     ];
     const index = Math.floor(Math.random() * figures.length);
     const [figureType, params] = figures[index];
@@ -92,7 +106,8 @@ function createRandomShape() {
     const FigureConstructor = {
         'Rectangle': Rectangle,
         'Triangle': Triangle,
-        'Circle': Circle
+        'Circle': Circle,
+        'Square': Square
     }
 
     const figure = new FigureConstructor[figureType](...params);
