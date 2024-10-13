@@ -11,7 +11,7 @@ function getRandomColor() {
     return `rgb(${r},${g},${b})`;
 }
 
-function createRandomShape() {
+function createRandomFigure() {
     const x = Math.random() * canvas.width;
     const y = Math.random() * canvas.height;
     const height = Math.random() * 100;
