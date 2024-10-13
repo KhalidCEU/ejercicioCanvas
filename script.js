@@ -78,6 +78,36 @@ class Triangle {
     }
 }
 
+class RandomShape {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color
+    }
+
+    draw(ctx) {
+        const nbPoints = Math.floor(Math.random() * 10) ;
+        const points = [];
+
+        for (let i = 0; i < nbPoints; i++) {
+            const randomX = Math.random() * 100 - 50;
+            const randomY = Math.random() * 100 - 50;
+            points.push({ x: this.x + randomX, y: this.y + randomY });
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+        }
+
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
 function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -98,7 +128,8 @@ function createRandomShape() {
         ['Triangle', [x, y, size, color]],
         ['Rectangle', [x, y, height, width, color]],
         ['Circle', [x, y, radius, color]],
-        ['Square', [x, y, size, color]]
+        ['Square', [x, y, size, color]],
+        ['RandomShape', [x, y, color]]
     ];
     const index = Math.floor(Math.random() * figures.length);
     const [figureType, params] = figures[index];
@@ -107,7 +138,8 @@ function createRandomShape() {
         'Rectangle': Rectangle,
         'Triangle': Triangle,
         'Circle': Circle,
-        'Square': Square
+        'Square': Square,
+        'RandomShape': RandomShape
     }
 
     const figure = new FigureConstructor[figureType](...params);
