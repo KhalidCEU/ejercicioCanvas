@@ -8,11 +8,8 @@ class Rectangle{
     }
 
     draw(ctx) {
-        ctx.beginPath()
-        ctx.closePath();
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height)
-        ctx.fill();
     }
 }
 
@@ -45,11 +42,8 @@ class Square {
     }
 
     draw(ctx) {
-        ctx.beginPath()
-        ctx.closePath();
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height)
-        ctx.fill();
     }
 }
 
