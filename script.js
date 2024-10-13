@@ -23,7 +23,21 @@ class Rectangle{
 }
 
 class Circle{
-    constructor() {
+    constructor(x, y, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.startAngle = 0;
+        this.endAngle = 2 * Math.PI;
+        this.color = color;
+    }
+
+    draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle)
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
     }
 }
 
@@ -64,11 +78,13 @@ function createRandomShape() {
     const height = Math.random() * 100;
     const width = Math.random() * 100 + 10;
     const size = Math.random() * 50 + 10;
+    const radius = Math.random() * 20;
     const color = getRandomColor();
 
     const figures = [
         ['Triangle', [x, y, size, color]],
-        ['Rectangle', [x, y, height, width, color]]
+        ['Rectangle', [x, y, height, width, color]],
+        ['Circle', [x, y, radius, color]]
     ];
     const index = Math.floor(Math.random() * figures.length);
     const [figureType, params] = figures[index];
@@ -76,6 +92,7 @@ function createRandomShape() {
     const FigureConstructor = {
         'Rectangle': Rectangle,
         'Triangle': Triangle,
+        'Circle': Circle
     }
 
     const figure = new FigureConstructor[figureType](...params);
