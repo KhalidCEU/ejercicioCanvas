@@ -4,6 +4,29 @@ body {
     overflow: hidden;
 }
 
+h1 {
+    text-align: center;
+}
+
+.drawButton {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 5px 20px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.drawButton:hover {
+    color: white;
+    background-color: black;
+    transition: 1s ease;
+}
+
 canvas {
     display: block;
     width: 100vw;
